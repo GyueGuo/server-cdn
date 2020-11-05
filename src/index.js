@@ -3,7 +3,7 @@ const Path = require('path');
 const Fs = require('fs');
 const MimeTypes = require('mime-types');
 
-const pathPrefix = Path.resolve('/projects/static-assets/cdn');
+const pathPrefix = Path.resolve('/projects/static-assets');
 const app = new Koa();
 const port = 3000;
 
