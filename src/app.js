@@ -23,6 +23,7 @@ app.use(async (ctx) => {
   const [resSuccess, resData] = await getImg(imgPath);
   if (resSuccess) {
     ctx.staus = 200;
+    ctx.set('access-control-allow-origin', '*');
     ctx.set('content-type', MimeTypes.lookup(imgPath));
     ctx.body = resData;
   } else {
