@@ -7,7 +7,7 @@ const pathPrefix = Path.resolve('/projects/static-assets');
 const app = new Koa();
 const port = 3000;
 
-function getImg(path) {
+function getFile(path) {
   return new Promise(function (resolve, reject) {
     Fs.readFile(path, (err, data) => {
       if (err) {
@@ -19,12 +19,12 @@ function getImg(path) {
   });
 }
 app.use(async (ctx) => {
-  const imgPath = Path.join(pathPrefix, ctx.path)
-  const [resSuccess, resData] = await getImg(imgPath);
+  const filePath = Path.join(pathPrefix, ctx.path)
+  const [resSuccess, resData] = await getFile(filePath);
   if (resSuccess) {
     ctx.staus = 200;
     ctx.set('access-control-allow-origin', '*');
-    ctx.set('content-type', MimeTypes.lookup(imgPath));
+    ctx.set('content-type', MimeTypes.lookup(filePath));
     ctx.body = resData;
   } else {
     ctx.status =  resData.code === 'ENOENT' ? 404 : 500;
