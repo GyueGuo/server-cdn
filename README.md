@@ -1,2 +1,2 @@
 # server-cdn
-通过实现简单静态资源cdn
+通过node实现简单静态资源cdn
